@@ -11,23 +11,23 @@ OpenVPNTunnelKit/<version>/OpenVPNTunnelKit.podspec   the CocoaPods spec repo tr
 ```
 
 Because the download is plain HTTPS, consuming projects need no access to the private sources and
-no GitLab credentials.
+no GitHub credentials.
 
 ## Using the pod
 
 ```ruby
 source 'https://cdn.cocoapods.org/'
-source 'https://gitlab-ci.cdin.me/ios/openvpnxor-releases.git'
+source 'https://github.com/Daniloday/OpenVPNXor-Releases.git'
 
 platform :ios, '15.0'
 use_frameworks!
 
 target 'App' do
-  pod 'OpenVPNTunnelKit', '~> 0.1.0'
+  pod 'OpenVPNTunnelKit', '~> 0.2'
 end
 
 target 'PacketTunnel' do
-  pod 'OpenVPNTunnelKit', '~> 0.1.0'
+  pod 'OpenVPNTunnelKit', '~> 0.2'
 end
 ```
 
@@ -51,7 +51,7 @@ framework together with LICENSE and NOTICE, and writes both the zip and the pods
 repository. Then, from here:
 
 ```sh
-git add releases OpenVPNTunnelKit && git commit -m "OpenVPNTunnelKit 0.1.0" && git push
+git add releases OpenVPNTunnelKit && git commit -m "OpenVPNTunnelKit 0.2" && git push
 ```
 
 The push has to land before the spec is linted or installed: the podspec's `:http` URL points at
@@ -60,8 +60,8 @@ the zip in this repository, so it only resolves once the commit is public.
 ## Archive size
 
 Each release adds roughly 5 MB to this repository, and CocoaPods clones a spec repo in full. If the
-history grows uncomfortable, upload the zips as GitLab release assets instead of committing them
-and point `RELEASES_REPO` in the podspec at the asset URL — nothing else changes for consumers.
+history grows uncomfortable, upload the zips as GitHub release assets instead of committing them
+and point `releases_raw` in the podspec at the asset URL — nothing else changes for consumers.
 
 ## Licence
 

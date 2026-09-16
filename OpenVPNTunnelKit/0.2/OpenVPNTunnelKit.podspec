@@ -4,13 +4,14 @@
 # projects need no access to these sources -- only plain HTTPS. Sources live in the private
 # repository; Scripts/release.sh produces the zip and copies this spec into the releases repo.
 
-# Public repository that hosts the release zips and serves as the private CocoaPods spec repo.
-# A local variable rather than a constant: CocoaPods evaluates a podspec more than once per run.
-releases_repo = "https://gitlab-ci.cdin.me/ios/openvpnxor-releases"
+# Public repository that hosts the release zips and doubles as the CocoaPods spec repo.
+# Local variables rather than constants: CocoaPods evaluates a podspec more than once per run.
+releases_repo = "https://github.com/Daniloday/OpenVPNXor-Releases"
+releases_raw  = "https://raw.githubusercontent.com/Daniloday/OpenVPNXor-Releases/main"
 
 Pod::Spec.new do |s|
   s.name     = "OpenVPNTunnelKit"
-  s.version  = "0.1.0"
+  s.version  = "0.2"
   s.summary  = "OpenVPN client (openvpn3 core with XOR scramble) for iOS and macOS NetworkExtension, shipped as a binary xcframework."
   s.description = <<-DESC
     Objective-C++/Swift wrapper around the openvpn3 core (mbedTLS, LZ4, XOR scramble patch) for use inside
@@ -24,7 +25,7 @@ Pod::Spec.new do |s|
 
   # Binary release archive: OpenVPNTunnelKit.xcframework + LICENSE + NOTICE at the zip root.
   s.source = {
-    :http => "#{releases_repo}/-/raw/main/releases/#{s.version}/OpenVPNTunnelKit.xcframework.zip"
+    :http => "#{releases_raw}/releases/#{s.version}/OpenVPNTunnelKit.xcframework.zip"
   }
 
   s.ios.deployment_target = "15.0"
