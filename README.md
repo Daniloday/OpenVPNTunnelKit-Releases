@@ -16,26 +16,23 @@ no GitHub credentials.
 ## Using the pod
 
 ```ruby
-source 'https://cdn.cocoapods.org/'
-source 'https://github.com/Daniloday/OpenVPNXor-Releases.git'
-
 platform :ios, '15.0'
 use_frameworks!
 
 target 'App' do
-  pod 'OpenVPNTunnelKit', '~> 0.2'
+  pod 'OpenVPNTunnelKit', '~> 0.3'
 end
 
 target 'PacketTunnel' do
-  pod 'OpenVPNTunnelKit', '~> 0.2'
+  pod 'OpenVPNTunnelKit', '~> 0.3'
 end
 ```
 
 The pod belongs to both targets: the extension links the framework, the app embeds it. The binary
 is built with `BUILD_LIBRARY_FOR_DISTRIBUTION=YES` and marked app-extension-safe.
 
-Declaring the CDN source explicitly is required — as soon as a Podfile names any custom source,
-CocoaPods stops consulting the default one, and every other pod would fail to resolve.
+The pod is published on the CocoaPods trunk, so no `source` line is needed; this repository only
+hosts the archives the published spec points at.
 
 ## Cutting a release
 
@@ -51,11 +48,11 @@ framework together with LICENSE and NOTICE, and writes both the zip and the pods
 repository. Then, from here:
 
 ```sh
-git add releases OpenVPNTunnelKit && git commit -m "OpenVPNTunnelKit 0.2" && git push
+git add releases OpenVPNTunnelKit && git commit -m "OpenVPNTunnelKit 0.3" && git push
 ```
 
-The push has to land before the spec is linted or installed: the podspec's `:http` URL points at
-the zip in this repository, so it only resolves once the commit is public.
+The push has to land before `pod trunk push`: the podspec's `:http` URL points at the zip in this
+repository, so trunk's validator only resolves it once the commit is public.
 
 ## Archive size
 
